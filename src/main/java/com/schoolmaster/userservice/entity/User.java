@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -17,6 +15,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @Column(name = "first_name", nullable = false, length = 64)
+    private String firstName;
+
+    @Column(name = "sencond_name", length = 64)
+    private String sencondName;
+
+    @Column(name = "last_name", nullable = false, length = 64)
+    private String lastName;
+
+    @Column(name = "sencond_last_name", nullable = false, length = 64)
+    private String sencondLastName;
 
     @Column(name = "email", unique = true, nullable = false, length = 64)
     private String email;
@@ -55,7 +65,5 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Teacher teacher;
-
-
 
 }
